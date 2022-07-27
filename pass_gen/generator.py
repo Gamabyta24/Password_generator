@@ -1,6 +1,24 @@
 from random import choice
 import prompt
 
+
+
+def pwd_lenght():
+    return prompt.integer("Enter pass lenght: ")
+def pwd_auto():
+    return prompt.string("Gen auto? (y, n): ")
+def pwd_digits():
+    return prompt.string("include digits? (y, n): ")
+def pwd_uppercase():
+    return prompt.string("include uppercase (y, n): ")
+def pwd_lowercase():
+    return prompt.string("include lowercase (y, n): ")
+def pwd_punctuation():
+    return prompt.string("include symbols? (y, n): ")
+def your_pass(password):
+    print(f'Your password: {password}')
+
+
 def main():
     digits = "0123456789"
     uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -10,16 +28,16 @@ def main():
 
     chars = ""
 
-    pwd_length = prompt.integer("Enter pass lenght: ")
-    pwd_auto = prompt.string("Gen auto? (y, n): ")
+    x = pwd_lenght()
+    answer = pwd_auto()
 
-    if pwd_auto == "y":
+    if answer == "y":
         chars += ally
     else:
-        pwd_digits = prompt.string("include digits? (y, n): ")
-        pwd_uppercase = prompt.string("include uppercase (y, n): ")
-        pwd_lowercase = prompt.string("include lowercase (y, n): ")
-        pwd_punctuation = prompt.string("include symbols? (y, n): ")
+        pwd_digits()
+        pwd_uppercase()
+        pwd_lowercase()
+        pwd_punctuation()
         if pwd_digits == "y":
             chars += digits
         if pwd_uppercase == "y":
@@ -31,9 +49,9 @@ def main():
 
 
     password = ""
-    for i in range(pwd_length):
+    for i in range(x):
         password += choice(chars)
-    print(f'Your password: {password}')
+    your_pass(password)
 
 if __name__ == '__main__':
     main()
