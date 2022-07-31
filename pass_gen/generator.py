@@ -1,57 +1,60 @@
 from random import choice
 import prompt
+from global_const import *
 
 
-
-def pwd_lenght():
-    return prompt.integer("Enter pass lenght: ")
-def pwd_auto():
-    return prompt.string("Gen auto? (y, n): ")
-def pwd_digits():
-    return prompt.string("include digits? (y, n): ")
-def pwd_uppercase():
-    return prompt.string("include uppercase (y, n): ")
-def pwd_lowercase():
-    return prompt.string("include lowercase (y, n): ")
-def pwd_punctuation():
-    return prompt.string("include symbols? (y, n): ")
 def your_pass(password):
-    print(f'Your password: {password}')
+    print(f"Your password: {password}")
+
+
+def get_user_data():
+    objects_data = {
+        "lenght": 0,
+        "auto": 0,
+        "digits": 0,
+        "uppercase": 0,
+        "lowercase": 0,
+        "symbols": 0,
+    }
+    objects_data["lenght"] = prompt.integer("Enter pass lenght: ")
+    if prompt.string("Gen auto? (y, n): ") == "y":
+        objects_data["auto"] = 1
+        objects_data["digits"] = 1
+        objects_data["uppercase"] = 1
+        objects_data["lowercase"] = 1
+        objects_data["symbols"] = 1
+    else:
+        if prompt.string("include digits? (y, n): ") == "y":
+            objects_data["digits"] = 1
+        if prompt.string("include uppercase (y, n): ") == "y":
+            objects_data["uppercase"] = 1
+        if prompt.string("include lowercase (y, n): ") == "y":
+            objects_data["lowercase"] = 1
+        if prompt.string("include symbols? (y, n): ") == "y":
+            objects_data["symbols"] = 1
+    return objects_data
 
 
 def main():
-    digits = "0123456789"
-    uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    lowercase = "abcdefghijklmnopqrstuvwxyz"
-    punctuation = "!#$%&*+-=?@^_"
-    ally = digits + uppercase + lowercase + punctuation
-
+    user_data = get_user_data()
     chars = ""
-
-    x = pwd_lenght()
-    answer = pwd_auto()
-
-    if answer == "y":
-        chars += ally
-    else:
-        pwd_digits()
-        pwd_uppercase()
-        pwd_lowercase()
-        pwd_punctuation()
-        if pwd_digits == "y":
-            chars += digits
-        if pwd_uppercase == "y":
-            chars += uppercase
-        if pwd_lowercase == "y":
-            chars += lowercase
-        if pwd_punctuation == "y":
-            chars += punctuation
-
+    if user_data["auto"] == 1:
+        chars += ALL_OPTION
+    if user_data["digits"] == 1:
+        chars += DIGITS
+    if user_data["uppercase"] == 1:
+        chars += UPPERCASE
+    if user_data["lowercase"] == 1:
+        chars += LOWERCASE
+    if user_data["symbols"] == 1:
+        chars += PUNCTUATION
+    print(user_data)
 
     password = ""
-    for i in range(x):
+    for i in range(user_data["lenght"]):
         password += choice(chars)
     your_pass(password)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
