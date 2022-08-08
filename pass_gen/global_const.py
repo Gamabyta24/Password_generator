@@ -1,3 +1,4 @@
+"""Global constants."""
 DIGITS = "0123456789"
 UPPERCASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 LOWERCASE = "abcdefghijklmnopqrstuvwxyz"
