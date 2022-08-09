@@ -22,20 +22,12 @@ def your_pass(password):
     print(f"Your password: {password}")
 
 
-def default_values(object_arg):
+def default_values(object_arg, value=False):
     """Set default values in list."""
-    object_arg[DIGITS_OBJ] = False
-    object_arg[UPPERCASE_OBJ] = False
-    object_arg[LOWERCASE_OBJ] = False
-    object_arg[PUNCTUATION_OBJ] = False
-
-
-def all_values(object_arg):
-    """Set all options in password."""
-    object_arg[DIGITS_OBJ] = True
-    object_arg[UPPERCASE_OBJ] = True
-    object_arg[LOWERCASE_OBJ] = True
-    object_arg[PUNCTUATION_OBJ] = True
+    object_arg[DIGITS_OBJ] = value
+    object_arg[UPPERCASE_OBJ] = value
+    object_arg[LOWERCASE_OBJ] = value
+    object_arg[PUNCTUATION_OBJ] = value
 
 
 def get_user_data():
@@ -48,7 +40,7 @@ def get_user_data():
     default_values(objects_data)
     objects_data[LONG_OBJ] = prompt.integer("Enter pass lenght: ")
     if prompt.string("Gen auto? (y, n): ") == "y":
-        all_values(objects_data)
+        default_values(objects_data, True)
     else:
         if prompt.string("include digits? (y, n): ") == "y":
             objects_data[DIGITS_OBJ] = True
